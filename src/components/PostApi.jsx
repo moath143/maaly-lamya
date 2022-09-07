@@ -8,7 +8,7 @@ const PostApi = () => {
 
   // get data from api slice
   const dispatch = useDispatch();
-  const { post } = useSelector((state) => state.postApi);
+  const { post, loading, status } = useSelector((state) => state.postApi);
   const dataList = post.map((item, index) => {
     return (
       <div key={index}>

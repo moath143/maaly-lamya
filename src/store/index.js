@@ -7,7 +7,7 @@ const store = configureStore({
   reducer: {
     postStore: postSlice.reducer,
     userStore: userSlice.reducer,
-    postApi: postApiSlice.reducer
+    postApi: postApiSlice.reducer // initalState
   },
 });
 

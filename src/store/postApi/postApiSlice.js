@@ -20,16 +20,19 @@ export const postApiThunk = createAsyncThunk("posts/postApiThunk", async () => {
     });
 });
 
-export const postDataThunk = createAsyncThunk("post/postDataThunk", ({title, body}) => {
-  return axios
-    .post(`${baseUrl}`, { title, body })
-    .then((res) => {
-      return res.data;
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
+export const postDataThunk = createAsyncThunk(
+  "post/postDataThunk",
+  ({ title, body }) => {
+    return axios
+      .post(`${baseUrl}`, { title, body })
+      .then((res) => {
+        return res.data;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+);
 
 const postApiSlice = createSlice({
   name: "api",
@@ -52,14 +55,11 @@ const postApiSlice = createSlice({
     builder.addCase(postDataThunk.pending, (state, action) => {
       state.loading = true;
       state.status = "loading...";
-      
     });
     builder.addCase(postDataThunk.fulfilled, (state, action) => {
       const { title, body } = action.payload;
       // state.post = action.payload;
       state.post.unshift(action.payload);
-      
-
     });
     builder.addCase(postDataThunk.rejected, (state, action) => {
       state.loading = true;
